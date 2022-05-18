@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursion</title>
+</head>
+
+<body>
+    <script>
+
+        function checkPalindrome() {
+            let steps = 0;
+
+            return function palindrome(number) {
+
+                if (checkNatural(number)) {
+                    const reverse = reverseNumber(number);
+
+                    if (number === reverse) {
+                        const obj = {
+                            result: number,
+                            steps
+                        }
+                        return obj;
+                    } else {
+                        steps++;
+                        number += reverse;
+                        return palindrome(number);
+                    }
+                }
+            }
+        }
+
+        function checkNatural(num) {
+            let іsNatural = num >= 0 && Number.isInteger(num);
+            return іsNatural;
+        }
+
+        function reverseNumber(num) {
+            let res = 0;
+            while (num) {
+                res = res * 10 + num % 10;
+                num = Math.floor(num / 10);
+            }
+            return res;
+        }
+
+        const palindrome = checkPalindrome();
+        console.log(palindrome(96));
+    </script>
+
+
+
+</body>
+
+</html>
