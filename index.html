@@ -11,28 +11,25 @@
 <body>
     <script>
 
-        function checkPalindrome() {
-            let steps = 0;
+        function palindrome(number, steps = 0) {
 
-            return function palindrome(number) {
+            if (checkNatural(number)) {
+                const reverse = reverseNumber(number);
 
-                if (checkNatural(number)) {
-                    const reverse = reverseNumber(number);
-
-                    if (number === reverse) {
-                        const obj = {
-                            result: number,
-                            steps
-                        }
-                        return obj;
-                    } else {
-                        steps++;
-                        number += reverse;
-                        return palindrome(number);
+                if (number === reverse) {
+                    const obj = {
+                        result: number,
+                        steps
                     }
+                    return obj;
+                } else {
+                    steps++;
+                    number += reverse;
+                    return palindrome(number, steps);
                 }
             }
         }
+
 
         function checkNatural(num) {
             let іsNatural = num >= 0 && Number.isInteger(num);
@@ -48,8 +45,8 @@
             return res;
         }
 
-        const palindrome = checkPalindrome();
         console.log(palindrome(96));
+
     </script>
 
 
